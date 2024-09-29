@@ -5,12 +5,14 @@ import "./App.css";
 import Sidebar from "./components/Sidebar";
 import { useState, useEffect } from "react";
 import Books from "./components/Books";
+import Nav from "./components/Nav";
 import Preview from "./components/Preview";
 const API_KEY = "AIzaSyBdakqptVcy0KOcQZ4pnp0vO6ME1DU54YI";
 
 let Layout = styled.div`
   display: grid;
   grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto 1fr;
 `;
 
 function App() {
@@ -38,6 +40,7 @@ function App() {
       <>
         <Layout id="app">
           <Sidebar />
+          <Nav setFilter={setFilter}></Nav>
           <Books setPreview={setPreview} books={books} />
           <Preview book={preview}></Preview>
         </Layout>

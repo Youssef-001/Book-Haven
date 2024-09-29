@@ -12,13 +12,15 @@ const Container = styled.div`
 function Books({ books, setPreview }) {
   return (
     <Container id="books">
-      {books.map((book) => (
-        <Book
-          setPreview={() => setPreview(book)}
-          book={book}
-          key={book.title}
-        />
-      ))}
+      {books.map((book) =>
+        book.volumeInfo.imageLinks == undefined ? null : (
+          <Book
+            setPreview={() => setPreview(book)}
+            book={book}
+            key={book.title}
+          />
+        )
+      )}
     </Container>
   );
 }

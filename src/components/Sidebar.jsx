@@ -34,7 +34,7 @@ let SideIcons = styled.div`
 
 function Sidebar() {
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative", gridRow: "1/-1" }}>
       <SideBar>
         <Owl src="src\assets\owl-svgrepo-com.svg"></Owl>
         <SideIcons>

@@ -38,7 +38,7 @@ function Book({ book, setPreview }) {
       )}
       <DivInfo className="info">
         <BookTitle>{book.volumeInfo.title}</BookTitle>
-        <Author>{book.volumeInfo.authors[0]}</Author>
+        <Author>{book.volumeInfo.authors}</Author>
       </DivInfo>
     </Button>
   );
