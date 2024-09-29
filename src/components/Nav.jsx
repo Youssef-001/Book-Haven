@@ -2,18 +2,14 @@ import { FileX } from "lucide-react";
 import styled from "styled-components";
 
 const ButtonGenre = styled.button`
-  padding: 17px 20px;
-  border-radius: 50px;
   cursor: pointer;
-  border: 0;
+  all: unset;
   color: white;
-  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   font-family: "Helvetica";
   font-size: 15px;
-  transition: all 0.2s ease; /* Shorter duration for a snappier feel */
-  background-color: black;
+  cursor: pointer;
 
   &:active {
     transform: scale(0.95); /* Slightly shrink the button on click */
@@ -22,7 +18,7 @@ const ButtonGenre = styled.button`
   }
 
   &:hover {
-    background-color: #444; /* Change background color on hover */
+    color: #c0bab2; /* Change background color on hover */
   }
 `;
 
@@ -34,9 +30,12 @@ function Nav({ setFilter }) {
         gridColumn: "1/-1",
         padding: "2rem",
         display: "flex",
-        gap: "1rem",
+        gap: "3rem",
         flexWrap: "wrap",
         marginLeft: "3rem",
+        justifyContent: "center",
+        // backgroundColor: "rgb(31 41 55 / var(--tw-bg-opacity))",
+        background: "rgb(31 41 55)",
       }}
     >
       <ButtonGenre onClick={() => setFilter("fiction")}>Fiction</ButtonGenre>

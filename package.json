@@ -15,6 +15,7 @@
     "react-dom": "^18.3.1",
     "react-fetch-hook": "^1.9.5",
     "react-testing-library": "^8.0.1",
+    "shadcn-ui": "^0.9.2",
     "styled-components": "^6.1.13",
     "vitest": "^2.1.1"
   },

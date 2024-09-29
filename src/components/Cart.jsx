@@ -1,34 +1,39 @@
 import { ShoppingCart } from "lucide-react";
 import styled from "styled-components";
-
 let CartStyle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 15px;
+  padding: 1px 10px;
 `;
 
 let Counter = styled.p`
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 500;
+`;
+
+let CartButton = styled.button`
+  margin-left: auto;
+  cursor: pointer;
+  background-color: #f4f4f9;
+  outline: none;
+  border: 1px solid grey;
+
+  &:hover {
+    opacity: 0.7;
+  }
 `;
 
 function Cart({ cart }) {
   return (
     <>
-      <button
-        style={{
-          all: "unset",
-          marginLeft: "auto",
-          marginRight: "1rem",
-          cursor: "pointer",
-        }}
-      >
+      <CartButton>
         <CartStyle>
-          <ShoppingCart size="36px" />
-          <Counter>{cart.length}</Counter>
+          <ShoppingCart size="28px" />
+          <Counter>Cart ({cart.length})</Counter>
         </CartStyle>
-      </button>
+      </CartButton>
     </>
   );
 }
