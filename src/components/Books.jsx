@@ -9,12 +9,15 @@ const Container = styled.div`
   gap: 1rem;
 `;
 
-function Books({ books }) {
-  console.log("here", books);
+function Books({ books, setPreview }) {
   return (
     <Container id="books">
       {books.map((book) => (
-        <Book book={book} />
+        <Book
+          setPreview={() => setPreview(book)}
+          book={book}
+          key={book.title}
+        />
       ))}
     </Container>
   );

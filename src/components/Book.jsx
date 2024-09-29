@@ -30,19 +30,17 @@ const BookTitle = styled.p`
   font-weight: 700;
 `;
 
-function Book({ book }) {
+function Book({ book, setPreview }) {
   return (
-    <div>
-      <Button style={{ border: "none" }}>
-        {book.volumeInfo.imageLinks == undefined ? null : (
-          <img src={book.volumeInfo.imageLinks.thumbnail}></img>
-        )}
-        <DivInfo className="info">
-          <BookTitle>{book.volumeInfo.title}</BookTitle>
-          <Author>{book.volumeInfo.authors[0]}</Author>
-        </DivInfo>
-      </Button>
-    </div>
+    <Button style={{ border: "none" }} onClick={() => setPreview(book)}>
+      {book.volumeInfo.imageLinks == undefined ? null : (
+        <img src={book.volumeInfo.imageLinks.thumbnail}></img>
+      )}
+      <DivInfo className="info">
+        <BookTitle>{book.volumeInfo.title}</BookTitle>
+        <Author>{book.volumeInfo.authors[0]}</Author>
+      </DivInfo>
+    </Button>
   );
 }
 
