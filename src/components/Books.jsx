@@ -8,6 +8,7 @@ const Container = styled.div`
   /* width: 70vw; */
   grid-row: 3/-1;
   gap: 1rem;
+  justify-content: center;
 `;
 
 function Books({ books, setPreview, cart, setCart }) {

@@ -1,6 +1,19 @@
 import { ShoppingCart } from "lucide-react";
+import styled from "styled-components";
 
-function Cart() {
+let CartStyle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+`;
+
+let Counter = styled.p`
+  font-size: 2rem;
+  font-weight: 600;
+`;
+
+function Cart({ cart }) {
   return (
     <>
       <button
@@ -11,7 +24,10 @@ function Cart() {
           cursor: "pointer",
         }}
       >
-        <ShoppingCart size="36px" />
+        <CartStyle>
+          <ShoppingCart size="36px" />
+          <Counter>{cart.length}</Counter>
+        </CartStyle>
       </button>
     </>
   );

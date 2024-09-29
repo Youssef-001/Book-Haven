@@ -22,7 +22,7 @@ const Button = styled.button`
   } */
 `;
 const DivInfo = styled.div`
-  width: 7rem;
+  width: 10rem;
   margin-left: 10px;
 `;
 

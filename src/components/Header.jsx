@@ -13,6 +13,8 @@ let Head = styled.div`
   gap: 2rem;
   /* justify-content: center; */
   align-items: center;
+  position: sticky;
+  top: 0;
 `;
 
 let Name = styled.p`
@@ -21,13 +23,15 @@ let Name = styled.p`
   font-weight: 600;
 `;
 
-function Header() {
+function Header({ cart }) {
   return (
-    <Head>
-      <Owl src="src\assets\owl-svgrepo-com.svg"></Owl>
-      <Name>Book Haven</Name>
-      <Cart />
-    </Head>
+    <div style={{ position: "relative" }}>
+      <Head>
+        <Owl src="src\assets\owl-svgrepo-com.svg"></Owl>
+        <Name>Book Haven</Name>
+        <Cart cart={cart} />
+      </Head>
+    </div>
   );
 }
 

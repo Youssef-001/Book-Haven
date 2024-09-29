@@ -36,6 +36,7 @@ function Nav({ setFilter }) {
         display: "flex",
         gap: "1rem",
         flexWrap: "wrap",
+        marginLeft: "3rem",
       }}
     >
       <ButtonGenre onClick={() => setFilter("fiction")}>Fiction</ButtonGenre>

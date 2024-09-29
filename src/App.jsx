@@ -42,7 +42,7 @@ function App() {
     return (
       <>
         <Layout id="app">
-          <Header />
+          <Header cart={cart} />
           <Nav setFilter={setFilter}></Nav>
           <Books
             setPreview={setPreview}
