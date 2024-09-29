@@ -30,8 +30,8 @@ function Nav({ setFilter }) {
   return (
     <div
       style={{
-        gridRow: "1/2",
-        gridColumn: "2/-1",
+        gridRow: "2/3",
+        gridColumn: "1/-1",
         padding: "2rem",
         display: "flex",
         gap: "1rem",

@@ -6,6 +6,7 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   /* width: 70vw; */
+  grid-row: 3/-1;
   gap: 1rem;
 `;
 

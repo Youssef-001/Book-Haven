@@ -8,11 +8,11 @@ import Books from "./components/Books";
 import Nav from "./components/Nav";
 import Preview from "./components/Preview";
 const API_KEY = "AIzaSyBdakqptVcy0KOcQZ4pnp0vO6ME1DU54YI";
-
+import Header from "./components/Header";
 let Layout = styled.div`
   display: grid;
   grid-template-columns: auto 1fr auto;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto 1fr;
 `;
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
     return (
       <>
         <Layout id="app">
-          <Sidebar />
+          <Header />
           <Nav setFilter={setFilter}></Nav>
           <Books
             setPreview={setPreview}
