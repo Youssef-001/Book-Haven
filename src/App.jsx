@@ -19,6 +19,7 @@ function App() {
   let [filter, setFilter] = useState("fiction");
   let [books, setBooks] = useState("");
   let [preview, setPreview] = useState("");
+  let [cart, setCart] = useState([]);
 
   function handlePreview() {}
 
@@ -35,14 +36,21 @@ function App() {
     fetchData();
   }, [filter]);
 
+  console.log(cart);
+
   if (books != "")
     return (
       <>
         <Layout id="app">
           <Sidebar />
           <Nav setFilter={setFilter}></Nav>
-          <Books setPreview={setPreview} books={books} />
-          <Preview book={preview}></Preview>
+          <Books
+            setPreview={setPreview}
+            books={books}
+            cart={cart}
+            setCart={setCart}
+          />
+          {/* <Preview book={preview}></Preview> */}
         </Layout>
       </>
     );

@@ -2,7 +2,7 @@ import { FileX } from "lucide-react";
 import styled from "styled-components";
 
 const ButtonGenre = styled.button`
-  padding: 17px 30px;
+  padding: 17px 20px;
   border-radius: 50px;
   cursor: pointer;
   border: 0;
@@ -10,6 +10,7 @@ const ButtonGenre = styled.button`
   box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
+  font-family: "Helvetica";
   font-size: 15px;
   transition: all 0.2s ease; /* Shorter duration for a snappier feel */
   background-color: black;
@@ -34,6 +35,7 @@ function Nav({ setFilter }) {
         padding: "2rem",
         display: "flex",
         gap: "1rem",
+        flexWrap: "wrap",
       }}
     >
       <ButtonGenre onClick={() => setFilter("fiction")}>Fiction</ButtonGenre>

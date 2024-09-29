@@ -1,6 +1,5 @@
 import { BookOpen } from "lucide-react";
 import styled from "styled-components";
-import { ShoppingCart } from "lucide-react";
 let Owl = styled.img`
   width: 4rem;
   height: 4rem;
@@ -10,7 +9,7 @@ let SideBar = styled.div`
   display: flex;
   /* justify-content: center; */
   flex-direction: column;
-  padding: 2rem;
+  padding: 10px;
   gap: 2rem;
   position: sticky;
   top: 0;
@@ -36,14 +35,15 @@ function Sidebar() {
   return (
     <div style={{ position: "relative", gridRow: "1/-1" }}>
       <SideBar>
-        <Owl src="src\assets\owl-svgrepo-com.svg"></Owl>
+        <div style={{ display: "flex" }}>
+          <Owl src="src\assets\owl-svgrepo-com.svg"></Owl>
+          <h3>Book Haven</h3>
+        </div>
         <SideIcons>
           <NavButton>
             <BookOpen color="black"></BookOpen>
           </NavButton>
-          <NavButton>
-            <ShoppingCart />
-          </NavButton>
+          <NavButton></NavButton>
         </SideIcons>
       </SideBar>
     </div>
