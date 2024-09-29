@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import useFetch from "react-fetch-hook";
-
+import Books from "./Books";
 const API_KEY = "AIzaSyBdakqptVcy0KOcQZ4pnp0vO6ME1DU54YI";
 function Main() {
   let [filter, setFilter] = useState("fiction");
-  let [books, setBooks] = useState();
+  let [books, setBooks] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,6 +18,8 @@ function Main() {
     };
     fetchData();
   }, [filter]);
+
+  if (books != "") return <Books books={books} />;
 }
 
 export default Main;
