@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import PerfectScrollbar from "react-perfect-scrollbar";
+import "react-perfect-scrollbar/dist/css/styles.css";
 
 let PrevButton = styled.button`
   height: 2rem;
@@ -35,13 +37,14 @@ let Container = styled.div`
   gap: 1rem;
   z-index: 300;
 `;
+
 function CartPreview({ visible, cart, setCartPreview }) {
   if (visible) {
     return (
       <div
         id="cart"
         style={{
-          position: "absolute",
+          position: "fixed",
           backgroundColor: "white",
           right: "0",
           width: "30vw",
@@ -49,32 +52,38 @@ function CartPreview({ visible, cart, setCartPreview }) {
           padding: "1rem",
           zIndex: "6000",
           border: "2px solid grey",
+          height: "100vh",
         }}
       >
         <PrevHead>
           <h2>Your Cart</h2>
-          <Cross onClick={(e) => setCartPreview(!visible)}>X</Cross>
+          <Cross onClick={() => setCartPreview(!visible)}>X</Cross>
         </PrevHead>
-        <Container>
-          {cart.map((item) => (
-            <BookDiv key={`cart.${item.title}`}>
-              <img src={item.img}></img>
-              <div>
-                <h4>{item.title}</h4>
-                <h4>{item.price}</h4>
-              </div>
-              <Controls style={{ display: "flex" }}>
-                <PrevButton>+</PrevButton>
-                <h4>{item.quantity}</h4>
-                <PrevButton>-</PrevButton>
-                <PrevButton>Trash</PrevButton>
-              </Controls>
-            </BookDiv>
-          ))}
-        </Container>
+
+        {/* Wrap the scrollable content inside PerfectScrollbar */}
+        <PerfectScrollbar style={{ maxHeight: "90vh" }}>
+          <Container>
+            {cart.map((item) => (
+              <BookDiv key={`cart.${item.title}`}>
+                <img src={item.img} alt={item.title}></img>
+                <div>
+                  <h4>{item.title}</h4>
+                  <h4>{item.price}</h4>
+                </div>
+                <Controls>
+                  <PrevButton>+</PrevButton>
+                  <h4>{item.quantity}</h4>
+                  <PrevButton>-</PrevButton>
+                  <PrevButton>Trash</PrevButton>
+                </Controls>
+              </BookDiv>
+            ))}
+          </Container>
+        </PerfectScrollbar>
       </div>
     );
   }
+  return null;
 }
 
 export default CartPreview;

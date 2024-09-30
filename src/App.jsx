@@ -3,6 +3,7 @@ import styled from "styled-components";
 import "./App.css";
 // import { Sidebar } from "lucide-react";
 import Sidebar from "./components/Sidebar";
+import Cart from "./components/Cart";
 import { useState, useEffect } from "react";
 import Books from "./components/Books";
 import Nav from "./components/Nav";
@@ -14,6 +15,7 @@ let Layout = styled.div`
   grid-template-columns: auto 1fr auto;
   grid-template-rows: auto auto 1fr;
   opacity: ${(props) => (props.isCartPreviewVisible ? 0.3 : 1)};
+  /* z-index: 1; */
   /* position: relative; */
 `;
 
@@ -60,12 +62,14 @@ function App() {
   if (books != "")
     return (
       <>
-        <Layout id="app" isCartPreviewVisible={isCartPreviewVisible}>
-          <Header
+        <Header>
+          <Cart
             cart={cart}
-            isCartPreviewVisible={isCartPreviewVisible}
             setCartPreviewVisible={setCartPreviewVisible}
+            isCartPreviewVisible={isCartPreviewVisible}
           />
+        </Header>
+        <Layout id="app" isCartPreviewVisible={isCartPreviewVisible}>
           <Nav setFilter={setFilter}></Nav>
           <Books
             setPreview={setPreview}
