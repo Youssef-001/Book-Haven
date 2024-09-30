@@ -131,7 +131,9 @@ function Book({ book, setPreview, setCart, cart }) {
                 let newCart = [...cart];
                 for (let i = 0; i < newCart.length; i++) {
                   if (newCart[i].title == book.volumeInfo.title) {
-                    newCart[i].quantity += 1;
+                    let quant = newCart[i].quantity;
+                    newCart[i].quantity = quant + 1;
+
                     break;
                   }
                 }
