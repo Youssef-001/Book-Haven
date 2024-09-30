@@ -1,5 +1,8 @@
 import { ShoppingCart } from "lucide-react";
 import styled from "styled-components";
+import CartPreview from "./CartPreview";
+import { useState } from "react";
+
 let CartStyle = styled.div`
   display: flex;
   justify-content: center;
@@ -25,9 +28,15 @@ let CartButton = styled.button`
 `;
 
 function Cart({ cart }) {
+  const [isCartPreviewVisible, setCartPreviewVisible] = useState(false);
+
+  const handleClick = () => {
+    setCartPreviewVisible(!isCartPreviewVisible); // Toggle visibility
+  };
   return (
     <>
-      <CartButton>
+      {isCartPreviewVisible && <CartPreview visible={true} cart={cart} />}
+      <CartButton onClick={handleClick}>
         <CartStyle>
           <ShoppingCart size="28px" />
           <Counter>Cart ({cart.length})</Counter>

@@ -1,21 +1,36 @@
 function CartPreview({ visible, cart }) {
   if (visible) {
     return (
-      <div>
+      <div
+        id="cart"
+        style={{
+          position: "absolute",
+          backgroundColor: "grey",
+          right: "0",
+          width: "30vw",
+          top: "15vh",
+        }}
+      >
         <h2>Your Cart</h2>
-        <img src={cart.img}></img>
-        <div>
-          <h4>{cart.title}</h4>
-          <h4>{cart.price}</h4>
-        </div>
+        {cart.map((item) => (
+          <>
+            <img src={item.img}></img>
+            <div>
+              <h4>{item.title}</h4>
+              <h4>{item.price}</h4>
+            </div>
 
-        <div>
-          <button>+</button>
-          <h4>1</h4>
-          <button>-</button>
-        </div>
-        <div>Trash</div>
+            <div>
+              <button>+</button>
+              <h4>{item.quantity}</h4>
+              <button>-</button>
+            </div>
+            <button>Trash</button>
+          </>
+        ))}
       </div>
     );
   }
 }
+
+export default CartPreview;
