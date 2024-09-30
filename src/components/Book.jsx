@@ -89,28 +89,54 @@ function Book({ book, setPreview, setCart, cart }) {
           }}
         >
           <Price style={{}}>
-            {localStorage.getItem(book.volumeInfo.title)}$
+            {JSON.parse(localStorage.getItem(book.volumeInfo.title)).price}$
           </Price>
 
           <CartButton
             style={{ all: "unset" }}
             onClick={(e) => {
-              setCart([
-                ...cart,
-                {
-                  title:
-                    e.target.parentElement.parentElement.parentElement
-                      .childNodes[0].innerHTML,
-                  author:
-                    e.target.parentElement.parentElement.parentElement
-                      .childNodes[1].innerHTML,
-                  img: e.target.parentElement.parentElement.parentElement
-                    .parentElement.childNodes[0].src,
-                  price:
-                    e.target.parentElement.parentElement.childNodes[0]
-                      .innerHTML,
-                },
-              ]);
+              if (!cart.some((item) => item.title == book.volumeInfo.title)) {
+                setCart([
+                  ...cart,
+                  {
+                    title:
+                      e.target.parentElement.parentElement.parentElement
+                        .childNodes[0].innerHTML,
+                    author:
+                      e.target.parentElement.parentElement.parentElement
+                        .childNodes[1].innerHTML,
+                    img: e.target.parentElement.parentElement.parentElement
+                      .parentElement.childNodes[0].src,
+                    price:
+                      e.target.parentElement.parentElement.childNodes[0]
+                        .innerHTML,
+                    quantity: JSON.parse(
+                      localStorage.getItem(book.volumeInfo.title)
+                    ).quantity,
+                  },
+                ]);
+              } else {
+                localStorage.setItem(
+                  book.volumeInfo.title,
+                  JSON.stringify({
+                    ...JSON.parse(localStorage.getItem(book.volumeInfo.title)),
+                    quantity: JSON.stringify(
+                      parseInt(
+                        JSON.parse(localStorage.getItem(book.volumeInfo.title))
+                          .quantity
+                      ) + 1
+                    ),
+                  })
+                );
+                let newCart = [...cart];
+                for (let i = 0; i < newCart.length; i++) {
+                  if (newCart[i].title == book.volumeInfo.title) {
+                    newCart[i].quantity += 1;
+                    break;
+                  }
+                }
+                setCart(newCart);
+              }
             }}
           >
             <AddButton>Add to cart</AddButton>

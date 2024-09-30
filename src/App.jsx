@@ -41,7 +41,13 @@ function App() {
       data.items.forEach((vol) => {
         let title = vol.volumeInfo.title;
         if (!localStorage.getItem(title)) {
-          localStorage.setItem(title, getRandomNumber());
+          localStorage.setItem(
+            title,
+            JSON.stringify({
+              price: getRandomNumber(),
+              quantity: 1,
+            })
+          );
         }
       });
     };
