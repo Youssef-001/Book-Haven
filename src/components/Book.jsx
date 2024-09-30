@@ -24,15 +24,6 @@ const Button = styled.div`
   cursor: pointer;
   padding: 15px;
   background-color: white;
-  /* display: flex; */
-
-  /* &:hover {
-    background-color: #e74c3c;
-  }
-
-  &:hover + p {
-    color: #34495e;
-  } */
 `;
 const DivInfo = styled.div`
   width: 10rem;
@@ -131,7 +122,7 @@ function Book({ book, setPreview, setCart, cart }) {
                 let newCart = [...cart];
                 for (let i = 0; i < newCart.length; i++) {
                   if (newCart[i].title == book.volumeInfo.title) {
-                    let quant = newCart[i].quantity;
+                    let quant = parseInt(newCart[i].quantity);
                     newCart[i].quantity = quant + 1;
 
                     break;

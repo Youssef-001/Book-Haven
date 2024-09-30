@@ -23,13 +23,17 @@ let Name = styled.p`
   font-weight: 600;
 `;
 
-function Header({ cart }) {
+function Header({ cart, setCartPreviewVisible, isCartPreviewVisible }) {
   return (
     <div style={{ position: "relative" }}>
       <Head>
         <Owl src="src\assets\owl-svgrepo-com.svg"></Owl>
         <Name>Book Haven</Name>
-        <Cart cart={cart} />
+        <Cart
+          cart={cart}
+          setCartPreviewVisible={setCartPreviewVisible}
+          isCartPreviewVisible={isCartPreviewVisible}
+        />
       </Head>
     </div>
   );

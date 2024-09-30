@@ -13,6 +13,8 @@ let Layout = styled.div`
   display: grid;
   grid-template-columns: auto 1fr auto;
   grid-template-rows: auto auto 1fr;
+  opacity: ${(props) => (props.isCartPreviewVisible ? 0.3 : 1)};
+  /* position: relative; */
 `;
 
 function getRandomNumber() {
@@ -26,8 +28,7 @@ function App() {
   let [books, setBooks] = useState("");
   let [preview, setPreview] = useState("");
   let [cart, setCart] = useState([]);
-
-  function handlePreview() {}
+  const [isCartPreviewVisible, setCartPreviewVisible] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,8 +60,12 @@ function App() {
   if (books != "")
     return (
       <>
-        <Layout id="app">
-          <Header cart={cart} />
+        <Layout id="app" isCartPreviewVisible={isCartPreviewVisible}>
+          <Header
+            cart={cart}
+            isCartPreviewVisible={isCartPreviewVisible}
+            setCartPreviewVisible={setCartPreviewVisible}
+          />
           <Nav setFilter={setFilter}></Nav>
           <Books
             setPreview={setPreview}

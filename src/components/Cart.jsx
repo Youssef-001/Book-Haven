@@ -27,15 +27,19 @@ let CartButton = styled.button`
   }
 `;
 
-function Cart({ cart }) {
-  const [isCartPreviewVisible, setCartPreviewVisible] = useState(false);
-
+function Cart({ cart, isCartPreviewVisible, setCartPreviewVisible }) {
   const handleClick = () => {
     setCartPreviewVisible(!isCartPreviewVisible); // Toggle visibility
   };
   return (
     <>
-      {isCartPreviewVisible && <CartPreview visible={true} cart={cart} />}
+      {isCartPreviewVisible && (
+        <CartPreview
+          setCartPreview={setCartPreviewVisible}
+          visible={true}
+          cart={cart}
+        />
+      )}
       <CartButton onClick={handleClick}>
         <CartStyle>
           <ShoppingCart size="28px" />
