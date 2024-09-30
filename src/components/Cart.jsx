@@ -5,7 +5,6 @@ let CartStyle = styled.div`
   justify-content: center;
   align-items: center;
   gap: 15px;
-  padding: 1px 10px;
 `;
 
 let Counter = styled.p`
@@ -18,7 +17,7 @@ let CartButton = styled.button`
   cursor: pointer;
   background-color: #f4f4f9;
   outline: none;
-  border: 1px solid grey;
+  border: none;
 
   &:hover {
     opacity: 0.7;

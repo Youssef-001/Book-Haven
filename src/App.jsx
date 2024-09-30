@@ -15,6 +15,12 @@ let Layout = styled.div`
   grid-template-rows: auto auto 1fr;
 `;
 
+function getRandomNumber() {
+  const min = 19;
+  const max = 35;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 function App() {
   let [filter, setFilter] = useState("fiction");
   let [books, setBooks] = useState("");
@@ -32,6 +38,12 @@ function App() {
       let data = await res.json();
 
       setBooks(data.items);
+      data.items.forEach((vol) => {
+        let title = vol.volumeInfo.title;
+        if (!localStorage.getItem(title)) {
+          localStorage.setItem(title, getRandomNumber());
+        }
+      });
     };
     fetchData();
   }, [filter]);

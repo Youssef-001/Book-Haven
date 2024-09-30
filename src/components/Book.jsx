@@ -51,12 +51,9 @@ const BookTitle = styled.p`
 `;
 
 const Price = styled.p`
-  font-size: 1.1rem;
-  background-color: black;
-  color: white;
-  border-radius: 20px;
-  border: 1px solid black;
-  padding: 7px 10px;
+  font-size: 1.5rem;
+  color: black;
+  font-weight: 600;
 `;
 
 const CartButton = styled.button`
@@ -91,7 +88,9 @@ function Book({ book, setPreview, setCart, cart }) {
             justifyContent: "space-between",
           }}
         >
-          <Price style={{}}>{getRandomNumber()}$</Price>
+          <Price style={{}}>
+            {localStorage.getItem(book.volumeInfo.title)}$
+          </Price>
 
           <CartButton
             style={{ all: "unset" }}
@@ -107,6 +106,9 @@ function Book({ book, setPreview, setCart, cart }) {
                       .childNodes[1].innerHTML,
                   img: e.target.parentElement.parentElement.parentElement
                     .parentElement.childNodes[0].src,
+                  price:
+                    e.target.parentElement.parentElement.childNodes[0]
+                      .innerHTML,
                 },
               ]);
             }}
