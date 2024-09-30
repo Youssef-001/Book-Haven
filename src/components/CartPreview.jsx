@@ -1,10 +1,27 @@
 import styled from "styled-components";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import { Trash2 } from "lucide-react";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
-let PrevButton = styled.button`
+const PrevButton = styled.button`
   height: 2rem;
   width: 3rem;
+  background-color: white;
+  color: black;
+  border: 1px solid grey;
+  font-weight: 700;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+
+  &:hover {
+    background-color: #eee;
+  }
+
+  &:active {
+    transform: scale(0.95); /* Slightly reduce size on click */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+  }
 `;
 let Controls = styled.div`
   display: flex;
@@ -31,6 +48,7 @@ let BookDiv = styled.div`
   display: flex;
   gap: 1rem;
 `;
+
 let Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -44,15 +62,17 @@ function CartPreview({ visible, cart, setCartPreview }) {
       <div
         id="cart"
         style={{
-          position: "fixed",
+          position: "fixed", // Keep the cart in the same place
           backgroundColor: "white",
-          right: "0",
-          width: "30vw",
-          top: "0",
+          right: "0", // Align to the right side of the screen
+          top: "0", // Start from the top of the viewport
+          width: "30vw", // Adjust the width as needed
           padding: "1rem",
           zIndex: "6000",
           border: "2px solid grey",
-          height: "100vh",
+          height: "100vh", // Full height of the viewport
+          display: "flex",
+          flexDirection: "column",
         }}
       >
         <PrevHead>
@@ -60,8 +80,15 @@ function CartPreview({ visible, cart, setCartPreview }) {
           <Cross onClick={() => setCartPreview(!visible)}>X</Cross>
         </PrevHead>
 
-        {/* Wrap the scrollable content inside PerfectScrollbar */}
-        <PerfectScrollbar style={{ maxHeight: "90vh" }}>
+        {/* Scrollable content inside PerfectScrollbar with smooth scrolling */}
+        <PerfectScrollbar
+          options={{
+            wheelPropagation: false, // Prevent parent scroll
+            swipeEasing: true, // Add easing for swipe gestures
+            suppressScrollX: true, // Disable horizontal scrolling for smoother feel
+          }}
+          style={{ flexGrow: 1 }}
+        >
           <Container>
             {cart.map((item) => (
               <BookDiv key={`cart.${item.title}`}>
@@ -74,7 +101,10 @@ function CartPreview({ visible, cart, setCartPreview }) {
                   <PrevButton>+</PrevButton>
                   <h4>{item.quantity}</h4>
                   <PrevButton>-</PrevButton>
-                  <PrevButton>Trash</PrevButton>
+                  <PrevButton style={{ all: "unset", cursor: "pointer" }}>
+                    <Trash2 />
+                  </PrevButton>
+                  <br></br>
                 </Controls>
               </BookDiv>
             ))}
