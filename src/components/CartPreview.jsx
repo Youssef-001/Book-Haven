@@ -61,7 +61,48 @@ let Container = styled.div`
   z-index: 300;
 `;
 
-function CartPreview({ visible, cart, setCartPreview }) {
+let CartButton = styled.button`
+  background-color: black;
+  color: white;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  padding: 10px;
+  border-radius: 9px;
+  cursor: pointer;
+`;
+// TODO: force CartPreview re-render on changing cart
+function CartPreview({ visible, cart, setCartPreview, setCart }) {
+  function handleAddBook(bookTitle) {
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].title == bookTitle) {
+        let quant = parseInt(cart[i].quantity);
+        cart[i].quantity = quant + 1;
+      }
+    }
+
+    console.log("new", cart);
+    setCart(cart);
+  }
+
+  function handleDecrementBook(e) {
+    let bookTitle =
+      e.target.parentElement.parentElement.childNodes[1].childNodes[0]
+        .innerHTML;
+
+    cart = cart.filter((c) => {
+      if (c.title == bookTitle) {
+        c.quantity = parseInt(c.quantity) - 1;
+        console.log(c.quantity);
+      }
+    });
+    setCart(cart);
+  }
+
+  function handleDeleteBook(bookName) {
+    let updatedCart = cart.filter((c) => c.title !== bookName);
+    console.log("here", updatedCart);
+    setCart(updatedCart);
+  }
   if (visible) {
     return (
       <div
@@ -103,10 +144,17 @@ function CartPreview({ visible, cart, setCartPreview }) {
                   <h4>{item.price}</h4>
                 </div>
                 <Controls>
-                  <PrevButton>+</PrevButton>
+                  <PrevButton onClick={(e) => handleAddBook(item.title)}>
+                    +
+                  </PrevButton>
                   <h4>{item.quantity}</h4>
-                  <PrevButton>-</PrevButton>
-                  <PrevButton style={{ all: "unset", cursor: "pointer" }}>
+                  <PrevButton onClick={(e) => handleDecrementBook(e)}>
+                    -
+                  </PrevButton>
+                  <PrevButton
+                    onClick={() => handleDeleteBook(item.title)}
+                    style={{ all: "unset", cursor: "pointer" }}
+                  >
                     <Trash2 />
                   </PrevButton>
                   <br></br>
@@ -122,15 +170,17 @@ function CartPreview({ visible, cart, setCartPreview }) {
             alignContent: "center",
           }}
         >
-          <h1 style={{}}>Total: </h1>
+          <h2>Total: </h2>
           <h2>
             {cart.reduce((prev, nex) => {
               let price = nex.price.replace("$", "");
-              return prev + parseInt(price);
+              let quant = nex.quantity;
+              return prev + parseInt(price) * parseInt(quant);
             }, 0)}
             $
           </h2>
         </div>
+        <CartButton>Go to Cart</CartButton>
       </div>
     );
   }

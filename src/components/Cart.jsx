@@ -18,7 +18,7 @@ let Counter = styled.p`
 let CartButton = styled.button`
   margin-left: auto;
   cursor: pointer;
-  background-color: #f4f4f9;
+  background-color: #eee;
   outline: none;
   border: none;
 
@@ -27,7 +27,7 @@ let CartButton = styled.button`
   }
 `;
 
-function Cart({ cart, isCartPreviewVisible, setCartPreviewVisible }) {
+function Cart({ cart, isCartPreviewVisible, setCartPreviewVisible, setCart }) {
   const handleClick = () => {
     setCartPreviewVisible(!isCartPreviewVisible); // Toggle visibility
   };
@@ -38,6 +38,7 @@ function Cart({ cart, isCartPreviewVisible, setCartPreviewVisible }) {
           setCartPreview={setCartPreviewVisible}
           visible={true}
           cart={cart}
+          setCart={setCart}
         />
       )}
       <CartButton onClick={handleClick}>

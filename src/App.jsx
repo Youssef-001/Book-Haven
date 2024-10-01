@@ -67,6 +67,7 @@ function App() {
             cart={cart}
             setCartPreviewVisible={setCartPreviewVisible}
             isCartPreviewVisible={isCartPreviewVisible}
+            setCart={setCart}
           />
         </Header>
         <Layout id="app" isCartPreviewVisible={isCartPreviewVisible}>

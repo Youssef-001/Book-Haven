@@ -18,8 +18,9 @@ let Head = styled.div`
 `;
 
 let Name = styled.p`
-  font-family: Helvetica;
-  font-size: 1.6rem;
+  @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap");
+  font-family: Georgia;
+  font-size: 1.8rem;
   font-weight: 600;
 `;
 
@@ -27,10 +28,18 @@ function Header({
   cart,
   setCartPreviewVisible,
   isCartPreviewVisible,
+
   children,
 }) {
   return (
-    <div style={{ position: "relative", zIndex: "7000" }}>
+    <div
+      style={{
+        position: "sticky",
+        zIndex: "7000",
+        top: "0",
+        backgroundColor: "#eee",
+      }}
+    >
       <Head>
         <Owl src="src\assets\owl-svgrepo-com.svg"></Owl>
         <Name>Book Haven</Name>
