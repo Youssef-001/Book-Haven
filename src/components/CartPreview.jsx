@@ -84,18 +84,18 @@ function CartPreview({ visible, cart, setCartPreview, setCart }) {
     setCart(cart);
   }
 
-  function handleDecrementBook(e) {
-    let bookTitle =
-      e.target.parentElement.parentElement.childNodes[1].childNodes[0]
-        .innerHTML;
-
-    cart = cart.filter((c) => {
-      if (c.title == bookTitle) {
-        c.quantity = parseInt(c.quantity) - 1;
-        console.log(c.quantity);
+  function handleDecrementBook(bookTitle) {
+    let quant;
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].title == bookTitle) {
+        quant = parseInt(cart[i].quantity);
+        cart[i].quantity = quant - 1;
       }
-    });
-    setCart(cart);
+    }
+
+    console.log("new", cart);
+    if (quant <= 1) handleDeleteBook(bookTitle);
+    else setCart(cart);
   }
 
   function handleDeleteBook(bookName) {
@@ -144,11 +144,11 @@ function CartPreview({ visible, cart, setCartPreview, setCart }) {
                   <h4>{item.price}</h4>
                 </div>
                 <Controls>
-                  <PrevButton onClick={(e) => handleAddBook(item.title)}>
+                  <PrevButton onClick={() => handleAddBook(item.title)}>
                     +
                   </PrevButton>
                   <h4>{item.quantity}</h4>
-                  <PrevButton onClick={(e) => handleDecrementBook(e)}>
+                  <PrevButton onClick={() => handleDecrementBook(item.title)}>
                     -
                   </PrevButton>
                   <PrevButton
