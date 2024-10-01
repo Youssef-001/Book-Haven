@@ -47,6 +47,11 @@ let Cross = styled.button`
 let BookDiv = styled.div`
   display: flex;
   gap: 1rem;
+  border: 4px solid #eee;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  padding: 15px;
 `;
 
 let Container = styled.div`
@@ -110,6 +115,16 @@ function CartPreview({ visible, cart, setCartPreview }) {
             ))}
           </Container>
         </PerfectScrollbar>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignContent: "center",
+          }}
+        >
+          <h1 style={{}}>Total: </h1>
+          <h2>999$</h2>
+        </div>
       </div>
     );
   }
