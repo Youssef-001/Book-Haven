@@ -123,7 +123,13 @@ function CartPreview({ visible, cart, setCartPreview }) {
           }}
         >
           <h1 style={{}}>Total: </h1>
-          <h2>999$</h2>
+          <h2>
+            {cart.reduce((prev, nex) => {
+              let price = nex.price.replace("$", "");
+              return prev + parseInt(price);
+            }, 0)}
+            $
+          </h2>
         </div>
       </div>
     );
