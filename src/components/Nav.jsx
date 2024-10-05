@@ -34,7 +34,6 @@ function Nav({ setFilter }) {
         flexWrap: "wrap",
         marginLeft: "3rem",
         justifyContent: "center",
-        // backgroundColor: "rgb(31 41 55 / var(--tw-bg-opacity))",
         background: "rgb(31 41 55)",
       }}
     >

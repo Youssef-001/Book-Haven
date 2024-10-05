@@ -10,6 +10,8 @@ import Preview from "./components/Preview";
 const API_KEY = "AIzaSyBdakqptVcy0KOcQZ4pnp0vO6ME1DU54YI";
 import Header from "./components/Header";
 import { useCart } from "./components/CartContext"; // Import useCart context
+import { ChakraProvider } from "@chakra-ui/react";
+import { CircularProgress, Box } from "@chakra-ui/react";
 let Layout = styled.div`
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -32,9 +34,10 @@ function App() {
   // let [cart, setCart] = useState([]);
   let { cart, setCart } = useCart();
   const [isCartPreviewVisible, setCartPreviewVisible] = useState(false);
-
+  let [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       let res = await fetch(
         `https://www.googleapis.com/books/v1/volumes?q=subject:${filter}&orderBy=relevance&maxResults=40&key=${API_KEY}`
       );
@@ -42,6 +45,7 @@ function App() {
       let data = await res.json();
 
       setBooks(data.items);
+      setLoading(false);
       data.items.forEach((vol) => {
         let title = vol.volumeInfo.title;
         if (!localStorage.getItem(title)) {
@@ -59,6 +63,29 @@ function App() {
   }, [filter]);
 
   console.log(cart);
+
+  if (loading) {
+    return (
+      <ChakraProvider>
+        <Header>
+          <Cart
+            cart={cart}
+            setCartPreviewVisible={setCartPreviewVisible}
+            isCartPreviewVisible={isCartPreviewVisible}
+            setCart={setCart}
+          />
+        </Header>
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          height="100vh"
+        >
+          <CircularProgress isIndeterminate color="rgb(31, 41, 55)" />
+        </Box>
+      </ChakraProvider>
+    );
+  }
 
   if (books != "")
     return (
