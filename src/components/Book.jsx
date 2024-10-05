@@ -70,7 +70,7 @@ function Book({ book, setPreview, setCart, cart }) {
         <img
           style={{ width: "200px", height: "300px" }}
           src={book.volumeInfo.imageLinks.thumbnail}
-          alt={book.volumeInfo.title}
+          alt={`Book cover for ${book.volumeInfo.title} by ${book.volumeInfo.authors}`}
         ></img>
       )}
       <DivInfo className="info">
