@@ -1,4 +1,3 @@
-import Main from "./components/Main";
 import styled from "styled-components";
 import "./App.css";
 // import { Sidebar } from "lucide-react";

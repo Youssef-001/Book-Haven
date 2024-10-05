@@ -2,7 +2,7 @@ import styled from "styled-components";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { Trash2 } from "lucide-react";
 import "react-perfect-scrollbar/dist/css/styles.css";
-
+import { useState } from "react";
 const PrevButton = styled.button`
   height: 2rem;
   width: 3rem;
@@ -72,6 +72,7 @@ let CartButton = styled.button`
 `;
 // TODO: force CartPreview re-render on changing cart
 function CartPreview({ visible, cart, setCartPreview, setCart }) {
+  let [helper, setHelper] = useState(true);
   function handleAddBook(bookTitle) {
     for (let i = 0; i < cart.length; i++) {
       if (cart[i].title == bookTitle) {
@@ -82,6 +83,7 @@ function CartPreview({ visible, cart, setCartPreview, setCart }) {
 
     console.log("new", cart);
     setCart(cart);
+    setHelper(!helper);
   }
 
   function handleDecrementBook(bookTitle) {
@@ -92,6 +94,7 @@ function CartPreview({ visible, cart, setCartPreview, setCart }) {
         cart[i].quantity = quant - 1;
       }
     }
+    setHelper(!helper);
 
     console.log("new", cart);
     if (quant <= 1) handleDeleteBook(bookTitle);
