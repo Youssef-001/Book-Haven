@@ -39,11 +39,29 @@ let BookDiv = styled.div`
   gap: 1rem;
 `;
 
+let CartButton = styled.button`
+  background-color: black;
+  color: white;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  padding: 10px;
+  border-radius: 9px;
+  width: 100%;
+  cursor: pointer;
+`;
+
 function CartPage() {
   const location = useLocation();
   //   const { cart } = location.state || {}; // Handle case if state is undefined
   const { cart, setCart } = useCart(); // Get cart and setCart from context
   console.log("here", cart);
+
+  function handleDelete(title) {
+    let newCart = cart.filter((book) => book.title !== title);
+    setCart(newCart);
+    console.log(cart);
+    console.log(newCart);
+  }
 
   if (cart) {
     return (
@@ -79,7 +97,9 @@ function CartPage() {
               </div>
               <h3 style={{ gridColumn: "2/3" }}>{c.price}</h3>
               <h3 style={{ gridColumn: "3/4" }}>{c.quantity}</h3>
-              <button>Delete</button>
+              <CartButton onClick={() => handleDelete(c.title)}>
+                Delete
+              </CartButton>
             </BookDiv>
           ))}
 
