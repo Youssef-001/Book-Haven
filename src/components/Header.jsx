@@ -41,7 +41,7 @@ function Header({
       }}
     >
       <Head>
-        <Owl src="src\assets\owl-svgrepo-com.svg"></Owl>
+        <Owl alt="logo image" src="src\assets\owl-svgrepo-com.svg"></Owl>
         <Name>Book Haven</Name>
         {/* <Cart
           cart={cart}

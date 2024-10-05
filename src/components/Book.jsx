@@ -31,7 +31,9 @@ const DivInfo = styled.div`
 `;
 
 const Author = styled.p`
-  color: grey;
+  color: rgb(31, 41, 55);
+  font-size: 1.1rem;
+  font-weight: 600;
 `;
 
 const BookTitle = styled.p`
@@ -47,7 +49,7 @@ const Price = styled.p`
   font-weight: 600;
 `;
 
-const CartButton = styled.button`
+const CartButton = styled.div`
   all: unset;
   &:hover {
     animation: ${shake} 0.5s ease-in-out;
@@ -68,6 +70,7 @@ function Book({ book, setPreview, setCart, cart }) {
         <img
           style={{ width: "200px", height: "300px" }}
           src={book.volumeInfo.imageLinks.thumbnail}
+          alt={book.volumeInfo.title}
         ></img>
       )}
       <DivInfo className="info">
