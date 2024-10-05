@@ -9,6 +9,7 @@ import Nav from "./components/Nav";
 import Preview from "./components/Preview";
 const API_KEY = "AIzaSyBdakqptVcy0KOcQZ4pnp0vO6ME1DU54YI";
 import Header from "./components/Header";
+import { useCart } from "./components/CartContext"; // Import useCart context
 let Layout = styled.div`
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -28,7 +29,8 @@ function App() {
   let [filter, setFilter] = useState("fiction");
   let [books, setBooks] = useState("");
   let [preview, setPreview] = useState("");
-  let [cart, setCart] = useState([]);
+  // let [cart, setCart] = useState([]);
+  let { cart, setCart } = useCart();
   const [isCartPreviewVisible, setCartPreviewVisible] = useState(false);
 
   useEffect(() => {
@@ -77,7 +79,6 @@ function App() {
             cart={cart}
             setCart={setCart}
           />
-          {/* <Preview book={preview}></Preview> */}
         </Layout>
       </>
     );

@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import CartPage from "./components/CartPage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
+import { CartProvider } from "./components/CartContext.jsx"; // Import your CartProvider
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  <CartProvider>
     <RouterProvider router={router} />
-  </StrictMode>
+  </CartProvider>
 );

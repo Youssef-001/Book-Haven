@@ -3,6 +3,8 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import { Trash2 } from "lucide-react";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { Link } from "react-router-dom";
 const PrevButton = styled.button`
   height: 2rem;
@@ -69,6 +71,7 @@ let CartButton = styled.button`
   font-size: 1.2rem;
   padding: 10px;
   border-radius: 9px;
+  width: 100%;
   cursor: pointer;
 `;
 // TODO: force CartPreview re-render on changing cart
@@ -187,11 +190,10 @@ function CartPreview({ visible, cart, setCartPreview, setCart }) {
         {/* <CartButton to="/cart" state={{ cart }}>
           Go to Cart
         </CartButton> */}
-        <CartButton>
-          <Link to="/cart" state={{ cart }}>
-            Go to Cart
-          </Link>
-        </CartButton>
+
+        <Link to="/cart" state={{ cart }}>
+          <CartButton> Go to Cart</CartButton>
+        </Link>
       </div>
     );
   }
