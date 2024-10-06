@@ -5,6 +5,7 @@ import CartPage from "./components/CartPage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import { CartProvider } from "./components/CartContext.jsx"; // Import your CartProvider
+import { ChakraProvider } from "@chakra-ui/react";
 
 const router = createBrowserRouter([
   {

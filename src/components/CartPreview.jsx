@@ -74,7 +74,7 @@ let CartButton = styled.button`
   width: 100%;
   cursor: pointer;
 `;
-// TODO: force CartPreview re-render on changing cart
+// TODO: Fix responsiveness for cartPreview
 function CartPreview({ visible, cart, setCartPreview, setCart }) {
   let [helper, setHelper] = useState(true);
   function handleAddBook(bookTitle) {

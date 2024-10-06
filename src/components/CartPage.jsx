@@ -3,7 +3,7 @@ import Header from "./Header";
 import { House } from "lucide-react";
 import styled from "styled-components";
 import { useCart } from "./CartContext"; // Import useCart context
-
+import { Button, ButtonGroup } from "@chakra-ui/react";
 let HomeButton = styled.button`
   all: unset;
   margin-left: auto;
@@ -50,11 +50,32 @@ let CartButton = styled.button`
   cursor: pointer;
 `;
 
+let PriceCheck = styled.div`
+  display: flex;
+  gap: 4rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: Helvetica;
+  align-items: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
+
 function CartPage() {
   const location = useLocation();
-  //   const { cart } = location.state || {}; // Handle case if state is undefined
-  const { cart, setCart } = useCart(); // Get cart and setCart from context
+  const { cart, setCart } = useCart();
   console.log("here", cart);
+
+  function getTotalPrice() {
+    let price = cart.reduce((prev, nex) => {
+      let price = nex.price.replace("$", "");
+      let quant = nex.quantity;
+      return prev + parseInt(price) * parseInt(quant);
+    }, 0);
+
+    return price;
+  }
 
   function handleDelete(title) {
     let newCart = cart.filter((book) => book.title !== title);
@@ -103,7 +124,22 @@ function CartPage() {
             </BookDiv>
           ))}
 
-          <div id="checkout"></div>
+          <div
+            id="checkout"
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              flexWrap: "wrap",
+              gap: "1rem",
+            }}
+          >
+            <PriceCheck>
+              <span>Total price</span>
+
+              <span style={{}}>{getTotalPrice()}$</span>
+              <CartButton style={{}}>Checkout</CartButton>
+            </PriceCheck>
+          </div>
         </Container>
       </>
     );
