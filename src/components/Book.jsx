@@ -49,7 +49,7 @@ const Price = styled.p`
   font-weight: 600;
 `;
 
-const CartButton = styled.div`
+const CartButton = styled.button`
   all: unset;
   &:hover {
     animation: ${shake} 0.5s ease-in-out;

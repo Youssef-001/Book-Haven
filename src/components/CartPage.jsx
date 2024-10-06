@@ -136,7 +136,7 @@ function CartPage() {
             <PriceCheck>
               <span>Total price</span>
 
-              <span style={{}}>{getTotalPrice()}$</span>
+              <span>{getTotalPrice()}$</span>
               <CartButton style={{}}>Checkout</CartButton>
             </PriceCheck>
           </div>
