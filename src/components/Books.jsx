@@ -11,7 +11,9 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-function Books({ books, setPreview, cart, setCart }) {
+function Books({ books = [], setPreview, cart, setCart }) {
+  console.log(books);
+
   return (
     <Container id="books">
       {books.map((book) =>

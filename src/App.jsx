@@ -41,6 +41,9 @@ function App() {
       let res = await fetch(
         `https://www.googleapis.com/books/v1/volumes?q=subject:${filter}&orderBy=relevance&maxResults=40&key=${API_KEY}`
       );
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
 
       let data = await res.json();
 
@@ -59,7 +62,10 @@ function App() {
         }
       });
     };
-    fetchData();
+    fetchData().catch((error) => {
+      console.error("Fetching data failed:", error);
+      setBooks({ error: "Error fetching data" }); // Set an error state
+    });
   }, [filter]);
 
   console.log(cart);
@@ -81,7 +87,11 @@ function App() {
           justifyContent="center"
           height="100vh"
         >
-          <CircularProgress isIndeterminate color="rgb(31, 41, 55)" />
+          <CircularProgress
+            data-testid="loading"
+            isIndeterminate
+            color="rgb(31, 41, 55)"
+          />
         </Box>
       </ChakraProvider>
     );
