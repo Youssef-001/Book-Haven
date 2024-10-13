@@ -27,7 +27,12 @@ let CartButton = styled.button`
   }
 `;
 
-function Cart({ cart, isCartPreviewVisible, setCartPreviewVisible, setCart }) {
+function Cart({
+  cart = [],
+  isCartPreviewVisible,
+  setCartPreviewVisible,
+  setCart,
+}) {
   const handleClick = () => {
     setCartPreviewVisible(!isCartPreviewVisible); // Toggle visibility
   };
@@ -43,8 +48,8 @@ function Cart({ cart, isCartPreviewVisible, setCartPreviewVisible, setCart }) {
       )}
       <CartButton onClick={handleClick}>
         <CartStyle>
-          <ShoppingCart size="28px" />
-          <Counter>Cart ({cart.length})</Counter>
+          <ShoppingCart size="28px" data-testid="CartIcon" />
+          <Counter data-testid="cartCounter">Cart ({cart.length || 0})</Counter>
         </CartStyle>
       </CartButton>
     </>

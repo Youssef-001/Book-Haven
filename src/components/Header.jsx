@@ -11,13 +11,12 @@ let Head = styled.div`
   display: flex;
   padding: 10px;
   gap: 2rem;
-  /* justify-content: center; */
   align-items: center;
   position: sticky;
   top: 0;
 `;
 
-let Name = styled.p`
+let StyledName = styled.p`
   @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap");
   font-family: Georgia;
   font-size: 1.8rem;
@@ -41,14 +40,12 @@ function Header({
       }}
     >
       <Head>
-        <Owl alt="logo image" src="src\assets\owl-svgrepo-com.svg"></Owl>
-        <Name>Book Haven</Name>
-        {/* <Cart
-          cart={cart}
-          setCartPreviewVisible={setCartPreviewVisible}
-          isCartPreviewVisible={isCartPreviewVisible}
-        /> */}
-
+        <Owl
+          data-testid="logo"
+          alt="logo"
+          src="src/assets/owl-svgrepo-com.svg"
+        ></Owl>{" "}
+        <StyledName data-testid="brand">Book Haven</StyledName>
         {children}
       </Head>
     </div>
