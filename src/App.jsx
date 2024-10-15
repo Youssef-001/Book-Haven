@@ -7,68 +7,27 @@ import { useState, useEffect } from "react";
 import Books from "./components/Books";
 import Nav from "./components/Nav";
 import Preview from "./components/Preview";
-const API_KEY = "AIzaSyBdakqptVcy0KOcQZ4pnp0vO6ME1DU54YI";
 import Header from "./components/Header";
 import { useCart } from "./components/CartContext"; // Import useCart context
 import { ChakraProvider } from "@chakra-ui/react";
 import { CircularProgress, Box } from "@chakra-ui/react";
+import useBooks from "./components/GetBooks";
 let Layout = styled.div`
   display: grid;
   grid-template-columns: auto 1fr auto;
   grid-template-rows: auto auto 1fr;
   opacity: ${(props) => (props.isCartPreviewVisible ? 0.3 : 1)};
-  /* z-index: 1; */
-  /* position: relative; */
 `;
-
-function getRandomNumber() {
-  const min = 19;
-  const max = 35;
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 function App() {
   let [filter, setFilter] = useState("fiction");
-  let [books, setBooks] = useState("");
+  let [books, setBooks] = useState([]);
   let [preview, setPreview] = useState("");
-  // let [cart, setCart] = useState([]);
   let { cart, setCart } = useCart();
   const [isCartPreviewVisible, setCartPreviewVisible] = useState(false);
   let [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      let res = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=subject:${filter}&orderBy=relevance&maxResults=40&key=${API_KEY}`
-      );
-      if (!res.ok) {
-        throw new Error("Network response was not ok");
-      }
 
-      let data = await res.json();
-
-      setBooks(data.items);
-      setLoading(false);
-      data.items.forEach((vol) => {
-        let title = vol.volumeInfo.title;
-        if (!localStorage.getItem(title)) {
-          localStorage.setItem(
-            title,
-            JSON.stringify({
-              price: getRandomNumber(),
-              quantity: 1,
-            })
-          );
-        }
-      });
-    };
-    fetchData().catch((error) => {
-      console.error("Fetching data failed:", error);
-      setBooks({ error: "Error fetching data" }); // Set an error state
-    });
-  }, [filter]);
-
-  console.log(cart);
+  useBooks(filter, setLoading, setBooks);
 
   if (loading) {
     return (

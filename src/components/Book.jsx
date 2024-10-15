@@ -82,7 +82,7 @@ function Book({ book, setPreview, setCart, cart }) {
             justifyContent: "space-between",
           }}
         >
-          <Price style={{}}>
+          <Price style={{}} data-testid="book-price">
             {JSON.parse(localStorage.getItem(book.volumeInfo.title)).price}$
           </Price>
 
@@ -135,7 +135,7 @@ function Book({ book, setPreview, setCart, cart }) {
               }
             }}
           >
-            <AddButton>Add to cart</AddButton>
+            <AddButton data-testid="add-button">Add to cart</AddButton>
           </CartButton>
         </div>
       </DivInfo>
