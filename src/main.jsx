@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import { CartProvider } from "./components/CartContext.jsx"; // Import your CartProvider
 import { ChakraProvider } from "@chakra-ui/react";
+import Page404 from "./components/Page404.jsx";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,11 @@ const router = createBrowserRouter([
   {
     path: "/cart",
     element: <CartPage />,
+  },
+
+  {
+    path: "*",
+    element: <Page404></Page404>,
   },
 ]);
 

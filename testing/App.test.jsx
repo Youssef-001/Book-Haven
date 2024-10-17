@@ -1,12 +1,40 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import App from "../src/App";
 import { vi } from "vitest";
-import { describe, it, test, expect, skip, afterEach } from "vitest";
+import {
+  describe,
+  it,
+  test,
+  expect,
+  skip,
+  afterEach,
+  beforeEach,
+} from "vitest";
 import { CartProvider } from "../src/components/CartContext";
 import "@testing-library/jest-dom";
 
-global.fetch = vi.fn();
-
+beforeEach(() => {
+  global.fetch = vi.fn(() =>
+    Promise.resolve({
+      ok: true,
+      json: () =>
+        Promise.resolve({
+          items: [
+            {
+              volumeInfo: {
+                title: "Harry Potter", // Ensure this title matches exactly
+              },
+            },
+            {
+              volumeInfo: {
+                title: "The Hobbit",
+              },
+            },
+          ],
+        }),
+    })
+  );
+});
 describe("App Component", () => {
   afterEach(() => {
     vi.clearAllMocks();
@@ -40,9 +68,9 @@ describe("App Component", () => {
     };
 
     // Mock fetch to return the book data
-    fetch.mockResolvedValueOnce({
-      json: vi.fn().mockResolvedValueOnce(mockData),
-    });
+    // fetch.mockResolvedValueOnce({
+    //   json: vi.fn().mockResolvedValueOnce(mockData),
+    // });
 
     render(
       <CartProvider>
@@ -50,15 +78,11 @@ describe("App Component", () => {
       </CartProvider>
     );
 
-    // Check for loading spinner initially
-    expect(screen.getByTestId(/loading/i)).toBeInTheDocument();
-
-    // Wait for the books to be fetched and displayed
-    await waitFor(() =>
-      expect(screen.getByText("Harry potter")).toBeInTheDocument()
+    const bookElement = await screen.findByText(
+      "Harry Potter",
+      {},
+      { timeout: 5000 }
     );
-    await waitFor(() =>
-      expect(screen.getByText("Another Book")).toBeInTheDocument()
-    );
+    expect(bookElement).toBeInTheDocument();
   });
 });

@@ -191,7 +191,7 @@ function CartPreview({ visible, cart, setCartPreview, setCart }) {
           Go to Cart
         </CartButton> */}
 
-        <Link to="/cart" state={{ cart }}>
+        <Link to="/cart" state={{ cart }} aria-label="Go to Cart">
           <CartButton> Go to Cart</CartButton>
         </Link>
       </div>

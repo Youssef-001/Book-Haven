@@ -56,7 +56,7 @@ function App() {
     );
   }
 
-  if (books != "")
+  if (books.length > 0)
     return (
       <>
         <Header>
