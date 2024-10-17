@@ -43,7 +43,7 @@ function Header({
         <Owl
           data-testid="logo"
           alt="logo"
-          src="src/assets/owl-svgrepo-com.svg"
+          src="../public/owl-svgrepo-com.svg"
         ></Owl>{" "}
         <StyledName data-testid="brand">Book Haven</StyledName>
         {children}
