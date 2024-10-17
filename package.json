@@ -27,8 +27,7 @@
     "react-scrollbars-custom": "^4.1.1",
     "react-testing-library": "^8.0.1",
     "shadcn-ui": "^0.2.3",
-    "styled-components": "^6.1.13",
-    "vitest": "^1.6.0"
+    "styled-components": "^6.1.13"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
